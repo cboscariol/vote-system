@@ -6,27 +6,31 @@ import coxinha from'./assets/coxinha.jpg'
 import pizza from'./assets/pizza.jpeg'
 
 function App() {
-  const [counterCoxinha, setCounterCoxinha] = useState(0);
-  const [counterPizza, setCountercounterPizza] = useState(0);
+  const [counterLikeCoxinha, setCounterLikeCoxinha] = useState(0);
+  const [counterAgainstCoxinha, setCounterAgainstCoxinha] = useState(0);
+
+  const [counterLikePizza, setCounterLikePizza] = useState(0);
+  const [counterAgainstPizza, setCounterAgainstPizza] = useState(0);
+
 
   function voteInFavorCoxinha() {
-    setCounterCoxinha(counterCoxinha  >= 0  ? counterCoxinha +1 : counterCoxinha) 
+    setCounterLikeCoxinha(counterLikeCoxinha  >= 0  ? counterLikeCoxinha +1 : counterLikeCoxinha) 
   }
 
   function voteAgainstCoxinha() {
-    setCounterCoxinha(counterCoxinha  >= 0  ? counterCoxinha +1 : counterCoxinha) 
+    setCounterAgainstCoxinha(counterAgainstCoxinha  >= 0  ? counterAgainstCoxinha +1 : counterAgainstCoxinha) 
   }
 
  function showTotalVotes() {
-   return counterCoxinha + counterPizza
+   return counterLikeCoxinha + counterAgainstCoxinha + counterLikePizza + counterAgainstPizza
  }
 
   function voteInFavorPizza() {
-    setCountercounterPizza(counterPizza >= 0 ? counterPizza +1 : counterPizza) 
+    setCounterLikePizza(counterLikePizza >= 0 ? counterLikePizza +1 : counterLikePizza) 
   }
 
   function voteAgainstPizza() {
-    setCounterCoxinha(counterCoxinha  >= 0  ? counterCoxinha +1 : counterCoxinha) 
+    setCounterAgainstPizza(counterAgainstPizza  >= 0  ? counterAgainstPizza +1 : counterAgainstPizza) 
   }
 
 
@@ -36,19 +40,24 @@ function App() {
         <div className='card'> 
           <img className='food' src={coxinha} alt="" />
           <button  onClick={voteInFavorCoxinha}><img className='likeButton'src={like} alt="" /></button>
-          <button onClick={() => {}}><img className='likeButton' src={dislike} alt="" /></button>
-          <p>Likes {counterCoxinha}</p>
+          <button onClick={voteAgainstCoxinha}><img className='likeButton' src={dislike} alt="" /></button>
+         <p>Like {counterLikeCoxinha}</p>
+         <p>Dislike {counterAgainstCoxinha}</p>
         </div>
 
-           <p>{showTotalVotes()}</p>
+          
  
         <div>
         <div className='card'> 
           <img className='food' src={pizza} alt="" />
           <button onClick={voteInFavorPizza}><img className='likeButton' src={like} alt="" /></button>
-          <button onClick={() => {}}><img className='likeButton' src={dislike} alt="" /></button>
-          <p>{counterPizza}</p>
+          <button onClick={voteAgainstPizza}><img className='likeButton' src={dislike} alt="" /></button>
+          <p>Like {counterLikePizza}</p>
+          <p>Dislike {counterAgainstPizza} </p>
         </div>
+
+
+        <p>Total votes {showTotalVotes()}</p>
        
         </div> 
     </div>
